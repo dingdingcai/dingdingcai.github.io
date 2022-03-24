@@ -157,13 +157,37 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <!-- <h4>
-                    
-                </h4> -->
+                <h3>
+                    Object-Independent Training for Unseen Objects 6D Pose Estimation
+                </h3>
                 <div class="text-center">
-                    <div style="position:relative;padding-top:56.25%;">
-                        <img src='img/ove6d.png' style="position:absolute;top:0;left:0;width:100%">
-                        <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
+                    <div style="position:relative;padding-top:60%;">
+                        <img src='img/ove6d.png' style="position:absolute;top:0;left:0;width:80%;padding-left:20%">
+                        <p class="text-justify">
+                            A) We propose a single universal pose estimation model (called OVE6D) that is trained using more than 19,000 synthetic objects from ShapeNet. 
+                            B) The pre-trained model is applied to encode the 3D mesh model of the target object (unseen during the training phase) into a viewpoint codebook. 
+                            C) At the inference time, OVE6D takes a depth image, an object segmentation mask, and an object ID as an input, and estimates the 6D pose of the tar- get object using the corresponding viewpoint codebook. 
+                            New object can be added by simply encoding the corresponding 3D mesh model and including it into the codebook database (B).                        
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Object Viewpoint Sampling and Latent Embedding Visualization
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:80%;">
+                        <img src='img/viewpoint_embedding_tSNE.png' style="position:absolute;top:0;left:0;width:80%;padding-left:20%">
+                        <p class="text-justify">
+                            A) 4,000 viewpoints uniformly sampled from a sphere centered on the object (only the upper hemisphere is shown). 
+                            The in-plane rotations Rθi around the camera optical axis are illustrated by synthesizing three examples at viewpoints a (Raγ ) and b (Rbγ ). 
+                            B) The illustration of the proposed viewpoint embeddings using t-SNE [47], where the blue (’x’) and red (’+’) points correspond to the embeddings 
+                            from 10 in-plane rotated views at the viewpoints a and b, respectively, and the black points represent the remaining viewpoints. 
+                            It can be observed that the embeddings are relatively invariant to the in-plane rotations while varying with respect to the camera viewpoint.</p>
                     </div>
                 </div>
             </div>
@@ -171,13 +195,16 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h4>
-                    Visualization of Object Viewpoint Sampling and Embeddings.
-                </h4>
+            <h3>
+                Object Viewpoint Codebook Construction
+            </h3>
                 <div class="text-center">
-                    <div style="position:relative;padding-top:56.25%;">
-                        <img src='img/viewpoint_embedding_tSNE.png' style="position:absolute;top:0;left:0;width:100%">
-                        <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
+                    <div style="position:relative;padding-top:30%;">
+                        <img src='img/codebook-generation.png' style="position:absolute;top:0;left:0;width:96%;padding-left:4%">
+                        <p class="text-justify">
+                            The viewpoints are sampled from a sphere centered on the object mesh model with a radius proportional to the object diameter. 
+                            The viewpoint representations are extracted from the rendered depth images by the viewpoint encoder.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -185,32 +212,61 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h4>
-                    Inference Pipeline
-                </h4>
+                <h3>
+                    Inference Pipeline of OVE6D
+                </h3>
                 <div class="text-center">
-                    <div style="position:relative;padding-top:56.25%;">
+                    <div style="position:relative;padding-top:30%;">
                         <img src='img/inference_piepline.png' style="position:absolute;top:0;left:0;width:100%">
-                        <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
+                        <p class="text-justify">
+                            The entire system operates in a cascaded manner. First, the raw depth image is pre-processed to 128 × 128 input (A). 
+                            Second, the object orientation is obtained by performing the viewpoint retrieval (B), 
+                            in-plane orientation regression (C), and orientation verification (D). 
+                            Finally, the object location is refined (E) using the obtained orientation and the initial location (A).
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" >
             <div class="col-md-8 col-md-offset-2">
-                <h4>
-                    Evaluation Result on TLESS Dataset.
-                </h4>
+                <h3>
+                    Evaluation Result on TLESS Dataset
+                </h3>
                 <div class="text-center">
-                    <div style="position:relative;padding-top:56.25%;">
-                        <img src='img/tless_eval.png' style="position:absolute;top:0;left:0;width:100%">
+                    <div style="position:relative;padding-top:40%;">
+                        <img src='img/tless_eval.png' style="position:absolute;top:0;left:0;width:85%;padding-left:15%">
                         <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
                     </div>
                 </div>
             </div>
         </div>
 
+        <div class="row" >
+            <div class="col-md-8 col-md-offset-2">
+                <!-- <h3>
+                    Evaluation Result on TLESS Dataset
+                </h3> -->
+                <div class="text-center">
+                    <div style="position:relative;padding-top:45%;">
+                        <p class="text-justify">
+                            In this work, we proposed a model for inferring the object 6D pose in a cascaded fashion. 
+                            The model was trained using a large body of synthetic 3D objects and assessed using three challenging real-world benchmark datasets. 
+                            The results demonstrate that the model generalizes well to unseen data without needing any parameter optimization, 
+                            which significantly simplifies the addition of novel objects and enables use cases with thousands of objects.
+
+                        </p>
+
+                        
+                        <!-- <img src='img/tless_eval.png' style="position:absolute;top:0;left:0;width:85%;padding-left:15%"> -->
+                        <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
 
 
         <!-- <div class="row">
@@ -227,15 +283,15 @@
         </div> -->
 
             
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h4>
+        <div class="row" style="position:relative;padding-top:00%;">
+            <div class="col-md-8 col-md-offset-2" >
+                <h3>
                     Citation
-                </h4>
-                <div class="form-group col-md-10 col-md-offset-1">
+                </h3>
+                <div class="form-group col-md-9 col-md-offset-0">
                     <textarea id="bibtex" class="form-control" readonly>
 @article{dingding2022ove6d,
-    title={{OVE6D}: Object Viewpoint Encoding for Depth-based 6D Object Pose Estimation},
+    title={OVE6D: Object Viewpoint Encoding for Depth-based 6D Object Pose Estimation},
     author={Dingding Cai and Janne Heikkilä and Esa Rahtu},
     journal={arXiv},
     year={2022}
@@ -247,9 +303,9 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h4>
+                <h3>
                     Acknowledgements
-                </h4>
+                </h3>
                 <!-- <p class="text-justify"> -->
                     <!-- Thanks to Ricardo Martin-Brualla and David Salesin for their comments on the text, and to George Drettakis and Georgios Kopanas for graciously assisting us with our baseline evaluation. -->
                 <!-- <br> -->
