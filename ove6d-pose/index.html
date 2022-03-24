@@ -146,8 +146,68 @@
                     Abstract
                 </h3>
                 <p class="text-justify">
-                    This paper proposes a universal framework, called OVE6D, for model-based 6D object pose estimation from a single depth image and a target object mask. Our model is trained using purely synthetic data rendered from ShapeNet, and, unlike most of the existing methods, it generalizes well on new real-world objects without any fine-tuning. We achieve this by decomposing the 6D pose into viewpoint, in- plane rotation around the camera optical axis and transla- tion, and introducing novel lightweight modules for estimat- ing each component in a cascaded manner. The resulting network contains less than 4M parameters while demon- strating excellent performance on the challenging T-LESS and Occluded LINEMOD datasets without any dataset- specific training. We show that OVE6D outperforms some contemporary deep learning-based pose estimation meth- ods specifically trained for individual objects or datasets with real-world training data. 
+                    This paper proposes a universal framework, called OVE6D, for model-based 6D object pose estimation from a single depth image and a target object mask. 
+                    Our model is trained using purely synthetic data rendered from ShapeNet, and, unlike most of the existing methods, it generalizes well on new real-world objects without any fine-tuning. 
+                    We achieve this by decomposing the 6D pose into viewpoint, in-plane rotation around the camera optical axis and translation, and introducing novel lightweight modules for estimating each component in a cascaded manner. 
+                    The resulting network contains less than 4M parameters while demonstrating excellent performance on the challenging T-LESS and Occluded LINEMOD datasets without any dataset-specific training. 
+                    We show that OVE6D outperforms some contemporary deep learning-based pose estimation methods specifically trained for individual objects or datasets with real-world training data. 
                 </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <!-- <h3>
+                    Video
+                </h3> -->
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <img src='img/ove6d.png' style="position:absolute;top:0;left:0;width:100%;height:100%">
+                        <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <!-- <h3>
+                    Video
+                </h3> -->
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <img src='img/viewpoint_embedding_tSNE.png' style="position:absolute;top:0;left:0;width:100%;height:100%">
+                        <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <!-- <h3>
+                    Video
+                </h3> -->
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <img src='img/inference_piepline.png' style="position:absolute;top:0;left:0;width:100%;height:100%">
+                        <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <!-- <h3>
+                    Video
+                </h3> -->
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <img src='img/tless_eval.png' style="position:absolute;top:0;left:0;width:100%;height:100%">
+                        <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -174,13 +234,13 @@
                 </h3>
                 <div class="form-group col-md-10 col-md-offset-1">
                     <textarea id="bibtex" class="form-control" readonly>
-                        @article{dingding2022ove6d,
-                            title={{OVE6D}: Object Viewpoint Encoding for Depth-based 6D Object Pose Estimation},
-                            author={Dingding Cai and Janne Heikkilä and Esa Rahtu},
-                            <!-- journal={arXiv}, -->
-                            booktitle={CVPR},
-                            year={2022}
-                        }
+@article{dingding2022ove6d,
+        title={{OVE6D}: Object Viewpoint Encoding for Depth-based 6D Object Pose Estimation},
+        author={Dingding Cai and Janne Heikkilä and Esa Rahtu},
+        journal={arXiv},
+        <!-- booktitle={CVPR}, -->
+        year={2022}
+        }
                 </textarea>
                 </div>
             </div>
