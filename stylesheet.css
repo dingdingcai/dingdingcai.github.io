@@ -131,8 +131,8 @@ span.highlight {
 }
 
 .pagefooter{ 
-    position: fixed;     
-    text-align: center;    
-    bottom: 10px; 
+    position: relative;     
+    text-align: right;    
+    bottom: 0; 
     width: 100%;
 }  
