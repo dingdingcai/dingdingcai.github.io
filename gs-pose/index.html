@@ -109,24 +109,31 @@
         <div class="row">
                 <div class="col-md-4 col-md-offset-4 text-center">
                     <ul class="nav nav-pills nav-justified">
-                        <li>
+                        <!-- <li>
                             <a href="https://arxiv.org/abs/2203.01072">
                             <image src="img/gspose_paper_icon.png" height="40px">
                                 <h5><strong>Paper</strong></h5>
                             </a>
-                        </li>
+                        </li> -->
                         
-                        <!-- <li>
-                            <a href="https://youtu.be/zBSH-k9GbV4">
+                        <li>
+                            <a href="https://youtu.be/SnJazusDLM8"">
                             <image src="img/youtube_icon.png" height="60px">
-                                <h4><strong>Video</strong></h4>
+                                <h4><strong>Demo (Video) </strong></h4>
+                            </a>
+                        </li>
+
+                        <!-- <li>
+                            <a href="https://github.com/dingdingcai/GS-Pose">
+                            <image src="img/github.png" height="40px">
+                                <h5><strong>Code</strong></h5>
                             </a>
                         </li> -->
 
                         <li>
-                            <a href="https://github.com/dingdingcai/GS-Pose">
+                            <a href="">
                             <image src="img/github.png" height="40px">
-                                <h5><strong>Code</strong></h5>
+                                <h5><strong>Code (Soon) </strong></h5>
                             </a>
                         </li>
 
@@ -149,7 +156,7 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <iframe width="560" height="315" src="https://youtu.be/SnJazusDLM8" frameborder="0" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/SnJazusDLM8" frameborder="0" allowfullscreen></iframe>
                 <!-- <video id="v0" width="100%" autoplay loop muted controls> -->
                   <!-- <source src="https://youtu.be/SnJazusDLM8" type="video/mp4" /> -->
                 <!-- </video> -->
@@ -276,12 +283,12 @@
                 <div class="text-center">
                     <div style="position:relative;padding-top:0%;">
                         <p class="text-justify">
-                            In this work, we proposed a model (OVE6D) for inferring the object 6D pose in a cascaded fashion. 
-                            The model was trained using a large body of synthetic 3D objects and assessed using three challenging real-world benchmark datasets. 
-                            The results demonstrate that the model <strong>generalizes well to unseen objects without needing any parameter optimization</strong>, 
-                            which significantly simplifies the addition of novel objects and enables use cases with thousands of objects. 
-                            The main limitations of this approach include the requirements for the object 3D mesh model and instance segmentation mask, 
-                            which may not always be easy to obtain.
+                            This work presents GS-Pose, a novel end-to-end framework for estimating the 6D pose of novel objects in RGB images.
+                            GS-Pose exploits multiple representations of a novel object to facilitate cascaded sub-tasks, object detection, initial pose estimation, and pose refinement.
+                            GS-Pose is trained once using synthetic RGB images and then evaluated on two real-world datasets, LINEMOD and OnePose-LowTexture. 
+                            The experimental results showcase that GS-Pose achieves state-of-the-art performance on the benchmark datasets and demonstrates decent generalization capabilities to new datasets. 
+                            Moreover, GS-Pose can also be effortlessly adapted for robust 6D object pose tracking without significant adjustments. 
+                            However, objects with slender or thin structures may pose challenges to GS-Pose due to their poor segmentation.
                         </p>
 
                         
@@ -319,11 +326,7 @@
 @InProceedings{Cai_2022_CVPR,
     author    = {Cai, Dingding and Heikkil\"a, Janne and Rahtu, Esa},
     title     = {GS-Pose: Cascaded Framework for Generalizable Segmentation-based 6D Object Pose Estimation},
-    <!-- booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, -->
-    <!-- month     = {June}, -->
     year      = {2024},
-    <!-- arxiv     = '' -->
-    <!-- pages     = {6803-6813} -->
 }
                 </textarea>
                 </div>
