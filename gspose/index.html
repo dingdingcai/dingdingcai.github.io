@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>OVE6D-Pose</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image" content="https://dingdingcai.github.io/gspose_icon.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1296">
+    <meta property="og:image:height" content="840">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dingdingcai.github.io/gs-pose/"/>
+    <meta property="og:title" content="GS-Pose: Cascaded Framework for Generalizable Segmentation-based 6D Object Pose Estimation" />
+    <meta property="og:description" 
+    content="
+    This paper introduces GS-Pose, an end-to-end framework for locating and estimating the 6D pose of objects. 
+    GS-Pose begins with a set of posed RGB images of a previously unseen object and builds three distinct representations stored in a database. 
+    At inference, GS-Pose operates sequentially by locating the object in the input image, estimating its initial 6D pose using a retrieval approach, and refining the pose with a render-and-compare method. 
+    The key insight is the application of the appropriate object representation at each stage of the process. 
+    In particular, for the refinement step, we utilize 3D Gaussian splatting, a novel differentiable rendering technique that offers high rendering speed and relatively low optimization time. 
+    Off-the-shelf toolchains and commodity hardware, such as mobile phones, can be used to capture new objects to be added to the database. 
+    Extensive evaluations on the LINEMOD and OnePose-LowTexture datasets demonstrate excellent performance, establishing the new state-of-the-art.
+    "/>
+
+    <!-- <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mip-NeRF 360: Unbounded Anti-Aliased Neural Radiance Fields" />
+    <meta name="twitter:description" 
+    content="Though neural radiance fields (NeRF) have demonstrated impressive view synthesis results on objects and small bounded regions of space, 
+    they struggle on 'unbounded' scenes, where the camera may point in any direction and content may exist at any distance. 
+    In this setting, existing NeRF-like models often produce blurry or low-resolution renderings 
+    (due to the unbalanced detail and scale of nearby and distant objects), are slow to train, 
+    and may exhibit artifacts due to the inherent ambiguity of the task of reconstructing a large scene from a small set of images. 
+    We present an extension of mip-NeRF (a NeRF variant that addresses sampling and aliasing) that uses a non-linear scene parameterization, online distillation,
+     and a novel distortion-based regularizer to overcome the challenges presented by unbounded scenes. Our model, 
+     which we dub 'mip-NeRF 360' as we target scenes in which the camera rotates 360 degrees around a point, reduces mean-squared error by 54% compared to mip-NeRF, 
+     and is able to produce realistic synthesized views and detailed depth maps for highly intricate, unbounded real-world scenes." />
+    <meta name="twitter:image" content="https://jonbarron.info/mipnerf360/img/gardenvase.jpg" /> -->
+
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💫</text></svg>">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                <b>GS-Pose</b>: Cascaded Framework for Generalizable <br> Segmentation-based 6D Object Pose Estimation</br> 
+                <small>
+                </small>
+            </h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://dingdingcai.github.io/"> Dingding Cai </a>
+                        </br> Tampere University
+                    </li>
+                    
+                    <li>
+                        <a href="https://www.oulu.fi/en/researchers/janne-heikkila"> Janne Heikkilä </a>
+                        </br> University of Oulu 
+                    </li>
+                    
+                    <li>
+                        <a href="https://esa.rahtu.fi/"> Esa Rahtu </a>
+                        </br> Tampere University
+                    </li>
+                    <!-- <br>
+                    <li>
+                        <a href="https://pratulsrinivasan.github.io/">
+                          Pratul P. Srinivasan
+                        </a>
+                        </br>Google
+                    </li>
+                    <li>
+                        <a href="https://phogzone.com/">
+                          Peter Hedman
+                        </a>
+                        </br>Google
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://arxiv.org/abs/2203.01072">
+                            <image src="img/gspose_paper_icon.png" height="40px">
+                                <h5><strong>Paper</strong></h5>
+                            </a>
+                        </li>
+                        
+                        <!-- <li>
+                            <a href="https://youtu.be/zBSH-k9GbV4">
+                            <image src="img/youtube_icon.png" height="60px">
+                                <h4><strong>Video</strong></h4>
+                            </a>
+                        </li> -->
+
+                        <li>
+                            <a href="https://github.com/dingdingcai/GS-Pose">
+                            <image src="img/github.png" height="40px">
+                                <h5><strong>Code</strong></h5>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+        </div>
+
+
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <video id="v0" width="100%" autoplay loop muted controls>
+                  <source src="img/gardenvase_720.mp4" type="video/mp4" />
+                </video>
+			</div>
+            <div class="col-md-8 col-md-offset-2">
+				<p class="text-center"> Rendered images and depths from our model. </p>
+			</div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <iframe width="560" height="315" src="https://youtu.be/SnJazusDLM8" frameborder="0" allowfullscreen></iframe>
+                <!-- <video id="v0" width="100%" autoplay loop muted controls> -->
+                  <!-- <source src="https://youtu.be/SnJazusDLM8" type="video/mp4" /> -->
+                <!-- </video> -->
+			</div>
+            <!-- <div class="col-md-8 col-md-offset-2">
+				<p class="text-center"> Rendered images and depths from our model. </p>
+			</div> -->
+        </div>
+        
+
+        
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+                    This paper introduces GS-Pose, an end-to-end framework for locating and estimating the 6D pose of objects. 
+                    GS-Pose begins with a set of posed RGB images of a previously unseen object and builds three distinct representations stored in a database. 
+                    At inference, GS-Pose operates sequentially by locating the object in the input image, estimating its initial 6D pose using a retrieval approach, and refining the pose with a render-and-compare method. 
+                    The key insight is the application of the appropriate object representation at each stage of the process. 
+                    In particular, for the refinement step, we utilize 3D Gaussian splatting, a novel differentiable rendering technique that offers high rendering speed and relatively low optimization time. 
+                    Off-the-shelf toolchains and commodity hardware, such as mobile phones, can be used to capture new objects to be added to the database. 
+                    Extensive evaluations on the LINEMOD and OnePose-LowTexture datasets demonstrate excellent performance, establishing the new state-of-the-art.
+                </p>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Object-Agnostic Training for Unseen Objects 6D Pose Estimation
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:60%;">
+                        <img src='img/ove6d.png' style="position:absolute;top:0;left:0;width:80%;padding-left:20%">
+                        <p class="text-justify">
+                            <b>A</b>) We propose a single universal pose estimation model (OVE6D) that is trained using more than 19,000 synthetic objects from ShapeNet. 
+                            <b>B</b>) The pre-trained model is applied to encode the 3D mesh model of the target object (unseen during the training phase) into a viewpoint codebook. 
+                            <b>C</b>) At the inference time, OVE6D takes a depth image, an object segmentation mask, and an object ID as an input, and estimates the 6D pose of the target object using the corresponding viewpoint codebook. 
+                            New object can be added by simply encoding the corresponding 3D mesh model and including it into the codebook database (<b>B</b>).                        
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Object Viewpoint Sampling and Latent Embedding Visualization
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:80%;">
+                        <img src='img/viewpoint_embedding_tSNE.png' style="position:absolute;top:0;left:0;width:80%;padding-left:20%">
+                        <p class="text-justify">
+                            <b>A</b>) 4,000 viewpoints uniformly sampled from a sphere centered on the object (only the upper hemisphere is shown). 
+                            The in-plane rotations Rθi around the camera optical axis are illustrated by synthesizing three examples at viewpoints 
+                            <b>a</b> (R<sub>a</sub><sup style="position: relative; left: -0.4em;">γ</sup>) and <b>b</b> (R<sub>b</sub><sup style="position: relative; left: -0.4em;">γ</sup>). 
+                            <b>B</b>) The illustration of the proposed viewpoint embeddings using t-SNE [47], where the blue (’x’) and red (’+’) points correspond to the embeddings 
+                            from 10 in-plane rotated views at the viewpoints <b>a</b> and <b>b</b>, respectively, and the black points represent the remaining viewpoints. 
+                            It can be observed that the embeddings are relatively invariant to the in-plane rotations while varying with respect to the camera viewpoint.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+            <h3>
+                Object Viewpoint Codebook Construction
+            </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:30%;">
+                        <img src='img/codebook-generation.png' style="position:absolute;top:0;left:0;width:100%;padding-left:0%">
+                        <p class="text-justify">
+                            The viewpoints are sampled from a sphere centered on the object mesh model with a radius proportional to the object diameter. 
+                            The viewpoint representations are extracted from the rendered depth images by the viewpoint encoder.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Inference Pipeline of OVE6D
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:30%;">
+                        <img src='img/inference_piepline.png' style="position:absolute;top:0;left:0;width:100%">
+                        <p class="text-justify">
+                            The entire system operates in a cascaded manner. First, the raw depth image is pre-processed to 128 × 128 input (<b>A</b>). 
+                            Second, the object orientation is obtained by performing the viewpoint retrieval (<b>B</b>), 
+                            in-plane orientation regression (<b>C</b>), and orientation verification (<b>D</b>). 
+                            Finally, the object location is refined (<b>E</b>) using the obtained orientation and the initial location (<b>A</b>).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" >
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Evaluation Result on TLESS Dataset
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:85%;">
+                        <img src='img/tless_eval.png' style="position:absolute;top:0;left:0;width:85%;padding-left:15%">
+                        <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" >
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Conclusion
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:0%;">
+                        <p class="text-justify">
+                            In this work, we proposed a model (OVE6D) for inferring the object 6D pose in a cascaded fashion. 
+                            The model was trained using a large body of synthetic 3D objects and assessed using three challenging real-world benchmark datasets. 
+                            The results demonstrate that the model <strong>generalizes well to unseen objects without needing any parameter optimization</strong>, 
+                            which significantly simplifies the addition of novel objects and enables use cases with thousands of objects. 
+                            The main limitations of this approach include the requirements for the object 3D mesh model and instance segmentation mask, 
+                            which may not always be easy to obtain.
+                        </p>
+
+                        
+                        <!-- <img src='img/tless_eval.png' style="position:absolute;top:0;left:0;width:85%;padding-left:15%"> -->
+                        <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+         -->
+        
+
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+            
+        <div class="row" style="position:relative;padding-top:00%;">
+            <div class="col-md-8 col-md-offset-2" >
+                <h3>
+                    Citation
+                </h3>
+                <div class="form-group col-md-15 col-md-offset-0">
+                    <textarea id="bibtex" class="form-control" readonly>
+@InProceedings{Cai_2022_CVPR,
+    author    = {Cai, Dingding and Heikkil\"a, Janne and Rahtu, Esa},
+    title     = {GS-Pose: Cascaded Framework for Generalizable Segmentation-based 6D Object Pose Estimation},
+    <!-- booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, -->
+    <!-- month     = {June}, -->
+    year      = {2024},
+    <!-- arxiv     = '' -->
+    <!-- pages     = {6803-6813} -->
+}
+                </textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <!-- <p class="text-justify"> -->
+                    <!-- Thanks to Ricardo Martin-Brualla and David Salesin for their comments on the text, and to George Drettakis and Georgios Kopanas for graciously assisting us with our baseline evaluation. -->
+                <!-- <br> -->
+                This webpage template is based on <a href="https://jonbarron.info/" >link</a>.
+                </p>
+            </div>
+        </div>
+    
+    </div>
+</body>
+</html>
