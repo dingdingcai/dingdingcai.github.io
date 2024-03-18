@@ -64,11 +64,9 @@
 <body>
     <div class="container" id="main">
         <div class="row">
-            <h2 class="col-md-12 text-center">
+            <h1 class="col-md-12 text-center">
                 <b>GS-Pose</b>: Cascaded Framework for Generalizable <br> Segmentation-based 6D Object Pose Estimation</br> 
-                <small>
-                </small>
-            </h2>
+            </h1>
         </div>
 
         <div class="row">
@@ -109,12 +107,12 @@
         <div class="row">
                 <div class="col-md-4 col-md-offset-4 text-center">
                     <ul class="nav nav-pills nav-justified">
-                        <!-- <li>
-                            <a href="https://arxiv.org/abs/2203.01072">
-                            <image src="img/gspose_paper_icon.png" height="40px">
+                        <li>
+                            <a href="">
+                            <image src="assets/gspose_paper_icon.png" height="40px">
                                 <h5><strong>Paper</strong></h5>
                             </a>
-                        </li> -->
+                        </li>
                         
                         <!-- <li>
                             <a href="https://youtu.be/SnJazusDLM8"">
@@ -132,7 +130,7 @@
 
                         <li>
                             <a href="">
-                            <image src="img/github.png" height="40px">
+                            <image src="assets/github.png" height="40px">
                                 <h5><strong>Code (Soon) </strong></h5>
                             </a>
                         </li>
@@ -161,7 +159,7 @@
         </div>
         
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
                     Abstract
@@ -176,18 +174,59 @@
                     Extensive evaluations on the LINEMOD and OnePose-LowTexture datasets demonstrate excellent performance, establishing the new state-of-the-art.
                 </p>
             </div>
+        </div> -->
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3> <b> Overview of GS-Pose </b> </h3>
+
+                <h4> (1). Create the reference database for a newly added object </h4>
+                <video id="v0" width="100%" autoplay loop muted controls>
+                    <source src="assets/initialization_crt25.mp4" type="video/mp4" />
+                </video>
+
+                 <h4> (2). Perform pose estimation for the added object </h4>    
+                <video id="v0" width="100%" autoplay loop muted controls>
+                    <source src="assets/inference_crt25.mp4" type="video/mp4" />
+                </video>
+
+                <h4> (Additional) (3). Perform pose tracking for the added object </h4> 
+                <video id="v0" width="100%" autoplay loop muted controls>
+                    <source src="assets/tracking_crt25.mp4" type="video/mp4" />
+                </video>
+            </div>
         </div>
 
         <div class="row">
-            <div class="col-md-8 text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <h3> <b> Comparison with OnePose++ </b> </h3>
+                <p>
+                    All results are from single-frame pose estimation without tracking. Ours achieves relatively more stable and accurate results.
+                </p>
                 <video id="v0" width="100%" autoplay loop muted controls>
-                    <source src="img/catmodel_cfp_with_track_with_render_20.mp4" type="video/mp4" />
+                    <source src="assets/catmodel_comparison_opp_with_cfp_with_render_20.mp4" type="video/mp4" />
+                </video>
+                <video id="v0" width="100%" autoplay loop muted controls>
+                    <source src="assets/marseille_comparison_opp_with_cfp_with_render_15.mp4" type="video/mp4" />
                 </video>
             </div>
+        </div>
             
-            <!-- <div class="col-md-8 text-center">
-                <iframe height="320" src="img/catmodel_cfp_with_track_with_render_20.mp4" allowfullscreen ></iframe>
-			</div> -->
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3> <b> Pose Tracking Results </b> </h3>
+                <p class="text-justify">
+                    We compare the pose estimation results with/without pose tracking.
+                </p>
+                <video id="v0" width="100%" autoplay loop muted controls>
+                    <source src="assets/catmodel_tracking_cfp_track_with_render_20.mp4" type="video/mp4" />
+                </video>
+                <video id="v0" width="100%" autoplay loop muted controls>
+                    <source src="assets/marseille_tracking_cfp_track_with_render_15.mp4" type="video/mp4" />
+                </video>
+            </div>
         </div>
 
 
@@ -266,26 +305,31 @@
                 </div>
             </div>
         </div> -->
-<!-- 
+
         <div class="row" >
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    Evaluation Result on TLESS Dataset
+                    <b> Quantitative Results </b>
                 </h3>
                 <div class="text-center">
-                    <div style="position:relative;padding-top:85%;">
-                        <img src='img/tless_eval.png' style="position:absolute;top:0;left:0;width:85%;padding-left:15%">
+                    <div style="position:relative;">
+                        <img width="100%", src='assets/evaluation_LM.png'>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div style="position:relative;">
+                        <img width="100%", src='assets/evaluation_OPLT.png'>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
                                 <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
 
 
-        <div class="row" >
+        <!-- <div class="row" >
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    Conclusion
+                    <b> Conclusion </b>
                 </h3>
                 <div class="text-center">
                     <div style="position:relative;padding-top:0%;">
@@ -297,15 +341,11 @@
                             Moreover, GS-Pose can also be effortlessly adapted for robust 6D object pose tracking without significant adjustments. 
                             However, objects with slender or thin structures may pose challenges to GS-Pose due to their poor segmentation.
                         </p>
-
-                        
-                        <!-- <img src='img/tless_eval.png' style="position:absolute;top:0;left:0;width:85%;padding-left:15%"> -->
-                        <!-- <iframe src="https://youtube.com/embed/zBSH-k9GbV4" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe> -->
                     </div>
                 </div>
             </div>
         </div>
-        
+         -->
 
 
         <!-- <div class="row">
@@ -342,7 +382,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    Acknowledgements
+                    <b> Acknowledgements </b>
                 </h3>
                 <!-- <p class="text-justify"> -->
                     <!-- Thanks to Ricardo Martin-Brualla and David Salesin for their comments on the text, and to George Drettakis and Georgios Kopanas for graciously assisting us with our baseline evaluation. -->
