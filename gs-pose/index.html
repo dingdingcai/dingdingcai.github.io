@@ -154,7 +154,9 @@
 
         <div class="row">
             <div class="col-md-12 text-center">
+            <!-- <div class="col-md-8 col-md-offset-2">  -->
                 <iframe width="480" height="360" src="https://www.youtube.com/embed/SnJazusDLM8" allowfullscreen ></iframe>
+                <!-- <iframe height="100%" src="https://www.youtube.com/embed/SnJazusDLM8" allowfullscreen controls ></iframe> -->
 			</div>
         </div>
         
@@ -182,19 +184,25 @@
                 <h3> <b> Overview of GS-Pose </b> </h3>
 
                 <h4> (1). Create the reference database for a newly added object </h4>
-                <video id="v0" width="100%" autoplay loop muted controls>
-                    <source src="assets/initialization_crt25.mp4" type="video/mp4" />
-                </video>
+                <div class="text-center">
+                    <video id="v0" width="80%" autoplay loop muted controls>
+                        <source src="assets/initialization_crt25.mp4" type="video/mp4" />
+                    </video>
+                </div>
 
                  <h4> (2). Perform pose estimation for the added object </h4>    
-                <video id="v0" width="100%" autoplay loop muted controls>
-                    <source src="assets/inference_crt25.mp4" type="video/mp4" />
-                </video>
+                 <div class="text-center">
+                    <video id="v0" width="80%" autoplay loop muted controls>
+                        <source src="assets/inference_crt25.mp4" type="video/mp4" />
+                    </video>
+                </div>
 
                 <h4> (Additional) (3). Perform pose tracking for the added object </h4> 
-                <video id="v0" width="100%" autoplay loop muted controls>
-                    <source src="assets/tracking_crt25.mp4" type="video/mp4" />
-                </video>
+                <div class="text-center">
+                    <video id="v0" width="80%" autoplay loop muted controls>
+                        <source src="assets/tracking_crt25.mp4" type="video/mp4" />
+                    </video>
+                </div>
             </div>
         </div>
 
@@ -204,12 +212,14 @@
                 <p>
                     All results are from single-frame pose estimation without tracking. Ours achieves relatively more stable and accurate results.
                 </p>
-                <video id="v0" width="100%" autoplay loop muted controls>
-                    <source src="assets/catmodel_comparison_opp_with_cfp_with_render_20.mp4" type="video/mp4" />
-                </video>
-                <video id="v0" width="100%" autoplay loop muted controls>
-                    <source src="assets/marseille_comparison_opp_with_cfp_with_render_15.mp4" type="video/mp4" />
-                </video>
+                <div class="text-center">
+                    <video id="v0" width="80%" autoplay loop muted controls>
+                        <source src="assets/catmodel_comparison_opp_with_cfp_with_render_20.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v0" width="80%" autoplay loop muted controls>
+                        <source src="assets/marseille_comparison_opp_with_cfp_with_render_15.mp4" type="video/mp4" />
+                    </video>
+                </div>
             </div>
         </div>
             
@@ -220,12 +230,14 @@
                 <p class="text-justify">
                     We compare the pose estimation results with/without pose tracking.
                 </p>
-                <video id="v0" width="100%" autoplay loop muted controls>
-                    <source src="assets/catmodel_tracking_cfp_track_with_render_20.mp4" type="video/mp4" />
-                </video>
-                <video id="v0" width="100%" autoplay loop muted controls>
-                    <source src="assets/marseille_tracking_cfp_track_with_render_15.mp4" type="video/mp4" />
-                </video>
+                <div class="text-center">
+                    <video id="v0" width="80%" autoplay loop muted controls>
+                        <source src="assets/catmodel_tracking_cfp_track_with_render_20.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v0" width="80%" autoplay loop muted controls>
+                        <source src="assets/marseille_tracking_cfp_track_with_render_15.mp4" type="video/mp4" />
+                    </video>
+                </div>
             </div>
         </div>
 
@@ -382,7 +394,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    <b> Acknowledgements </b>
+                    Acknowledgements 
                 </h3>
                 <!-- <p class="text-justify"> -->
                     <!-- Thanks to Ricardo Martin-Brualla and David Salesin for their comments on the text, and to George Drettakis and Georgios Kopanas for graciously assisting us with our baseline evaluation. -->
