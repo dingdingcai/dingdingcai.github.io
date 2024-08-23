@@ -11,22 +11,22 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:image" content="https://dingdingcai.github.io/gspose_icon.png">
+    <meta property="og:image" content="https://dingdingcai.github.io/assets/gspose_icon.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1296">
     <meta property="og:image:height" content="840">
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dingdingcai.github.io/gs-pose/"/>
-    <meta property="og:title" content="GS-Pose: Cascaded Framework for Generalizable Segmentation-based 6D Object Pose Estimation" />
+    <meta property="og:title" content="GS-Pose: Generalizable Segmentation-based 6D Object Pose Estimation with 3D Gaussian Splatting" />
     <meta property="og:description" 
     content="
-    This paper introduces GS-Pose, an end-to-end framework for locating and estimating the 6D pose of objects. 
+    This paper introduces GS-Pose, a unified framework for localizing and estimating the 6D pose of novel objects. 
     GS-Pose begins with a set of posed RGB images of a previously unseen object and builds three distinct representations stored in a database. 
     At inference, GS-Pose operates sequentially by locating the object in the input image, estimating its initial 6D pose using a retrieval approach, and refining the pose with a render-and-compare method. 
     The key insight is the application of the appropriate object representation at each stage of the process. 
-    In particular, for the refinement step, we utilize 3D Gaussian splatting, a novel differentiable rendering technique that offers high rendering speed and relatively low optimization time. 
+    In particular, for the refinement step, we leverage 3D Gaussian splatting, a novel differentiable rendering technique that offers high rendering speed and relatively low optimization time. 
     Off-the-shelf toolchains and commodity hardware, such as mobile phones, can be used to capture new objects to be added to the database. 
-    Extensive evaluations on the LINEMOD and OnePose-LowTexture datasets demonstrate excellent performance, establishing the new state-of-the-art.
+    Extensive evaluations on the LINEMOD and OnePose-LowTexture datasets demonstrate excellent performance, establishing the new state-of-the-art. 
     "/>
 
     <!-- <meta name="twitter:card" content="summary_large_image" />
@@ -65,7 +65,7 @@
     <div class="container" id="main">
         <div class="row">
             <h1 class="col-md-16 text-center">
-                <b>GS-Pose</b>: Cascaded Framework for Generalizable <br> Segmentation-based 6D Object Pose Estimation</br> 
+                <b>GS-Pose</b>: Generalizable egmentation-based 6D <br>  Object Pose Estimation with 3D Gaussian Splatting </br> 
             </h1>
         </div>
 
@@ -109,7 +109,7 @@
                     <ul class="nav nav-pills nav-justified">
                         <li>
                             <a href="https://arxiv.org/abs/2403.10683">
-                            <image src="assets/gspose_paper_icon.png" height="40px">
+                            <image src="assets/gspose_new_icon.png" height="40px">
                                 <h5><strong>Paper</strong></h5>
                             </a>
                         </li>
@@ -155,7 +155,8 @@
         <div class="row">
             <div class="col-md-16 text-center">
             <!-- <div class="col-md-8 col-md-offset-2">  -->
-                <iframe width="480" height="320" src="https://www.youtube.com/embed/SnJazusDLM8" allowfullscreen ></iframe>
+                <iframe width="480" height="320" src="https://www.youtube.com/embed/89WdqTk0ziw" allowfullscreen ></iframe>
+                <!-- <iframe width="480" height="320" src="https://www.youtube.com/embed/SnJazusDLM8" allowfullscreen ></iframe> -->
                 <!-- <iframe height="100%" src="https://www.youtube.com/embed/SnJazusDLM8" allowfullscreen controls ></iframe> -->
 			</div>
         </div>
@@ -325,12 +326,12 @@
                 </h3>
                 <div class="text-center">
                     <div style="position:relative;">
-                        <img width="100%", src='assets/evaluation_LM.png'>
+                        <img width="100%", src='assets/evaluation_LM_new.png'>
                     </div>
                 </div>
                 <div class="text-center">
                     <div style="position:relative;">
-                        <img width="100%", src='assets/evaluation_OPLT.png'>
+                        <img width="100%", src='assets/evaluation_OPLT_new.png'>
                     </div>
                 </div>
             </div>
@@ -383,8 +384,8 @@
                     <textarea id="bibtex" class="form-control" readonly>
 @InProceedings{cai_2024_GSPose,
     author    = {Cai, Dingding and Heikkil\"a, Janne and Rahtu, Esa},
-    title     = {GS-Pose: Cascaded Framework for Generalizable Segmentation-based 6D Object Pose Estimation},
-    journal   = {arXiv preprint arXiv:2403.10683},
+    title     = {GS-Pose: Generalizable Segmentation-based 6D Object Pose Estimation with 3D Gaussian Splatting},
+    journal   = {arXiv preprint arXiv:2403.10683v2},
     year      = {2024},
 }
                 </textarea>
